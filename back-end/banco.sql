@@ -1,0 +1,47 @@
+DROP DATABASE IF EXISTS EducaNois;
+
+CREATE DATABASE IF NOT EXISTS EducaNois;
+USE EducaNois;
+
+CREATE TABLE IF NOT EXISTS alunos(
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    Nome VARCHAR(100)  NOT NULL,
+    Sobrenome VARCHAR(100)  NOT NULL,
+    Email VARCHAR(100)  NOT NULL UNIQUE,
+    Celular VARCHAR(100)  NOT NULL,
+    Senha VARCHAR(100)  NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS professores(
+    ID INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    Nome VARCHAR(100)  NOT NULL,
+    Sobrenome VARCHAR(100)  NOT NULL,
+    Email VARCHAR(100)  NOT NULL UNIQUE,
+    Celular VARCHAR(100)  NOT NULL,
+    Senha VARCHAR(100)  NOT NULL,
+    RG VARCHAR(100)  NOT NULL UNIQUE,
+    CPF VARCHAR(100)  NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS cursos(
+    codigocursos INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nome varchar(200) NOT NULL,
+    descricao varchar(300) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS assuntos(
+    codigoassuntos INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    codigocursos INT NOT NULL,
+    nome varchar(100) NOT NULL,
+    descricao varchar(300) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS videos(
+    codigovideos INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    codigoassuntos INT NOT NULL,
+    codigocursos INT NOT NULL,
+    nome_video varchar(1000) NOT NULL,
+    file_size BIGINT NOT NULL,
+    file_type VARCHAR(100) NOT NULL
+);
